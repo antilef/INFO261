@@ -1,0 +1,17 @@
+ALL PRIVILEGES: como mencionamos previamente esto permite a un usuario de MySQL acceder a todas las bases de datos asignadas en el sistema.
+CREATE: permite crear nuevas tablas o bases de datos.
+DROP: permite eliminar tablas o bases de datos.
+DELETE: permite eliminar registros de tablas.
+INSERT: permite insertar registros en tablas.
+SELECT: permite leer registros en las tablas.
+UPDATE: permite actualizar registros seleccionados en tablas.
+GRANT OPTION: permite remover privilegios de usuarios.
+
+
+CREATE USER 'nombre_usuario'@'localhost' IDENTIFIED BY 'tu_contrasena';
+
+GRANT [permiso] ON [nombre de bases de datos].[nombre de tabla] TO ‘[nombre de usuario]’@'localhost’;
+
+REVOKE [permiso] ON [nombre de base de datos].[nombre de tabla] FROM ‘[nombre de usuario]’@‘localhost’;
+
+DROP USER ‘usuario_prueba’@‘localhost’;

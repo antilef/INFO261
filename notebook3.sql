@@ -2,7 +2,11 @@ CREATE DATABASE valdivia;
 
 USE valdivia;
 
-CREATE TABLE persona(id_RUT INT NOT NULL,nombre VARCHAR(50),edad INT,PRIMARY KEY(id_RUT));
+CREATE TABLE persona(
+	id_RUT INT NOT NULL,
+	nombre VARCHAR(50),
+	edad INT,PRIMARY KEY(id_RUT)
+);
 
 CREATE TABLE lugar_de_interes(id_lugar INT NOT NULL AUTO_INCREMENT,description VARCHAR(100),
 categoria VARCHAR(50),latitud FLOAT,longitud FLOAT,PRIMARY KEY(id_lugar));
@@ -45,9 +49,7 @@ CREATE USER 'manco'@'localhost' IDENTIFIED BY 'micontraseña';
 GRANT SELECT ON valdivia.lugar_de_interes TO 'manco'@'localhost';
 GRANT SELECT ON valdivia.desplazarse TO 'manco'@'localhost';
 
-ALTER TABLE persona ALTER COLUMN (nivel_de_estudio VARCHAR(50) NOT NULL);
-
-#elimina categoria de la tabla
+ALTER TABLE persona ALTER COLUMN (nivel_de_estudio VARCHAR(50) NOT NULL);#elimina categoria de la tabla
 ALTER TABLE lugar_de_interes DROP COLUMN categoria;
 
 CREATE TABLE categoria(categoria_id INT NOT NULL AUTO_INCREMENT,nombre VARCHAR(50),PRIMARY KEY(categoria_id));

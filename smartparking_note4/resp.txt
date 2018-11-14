@@ -1,0 +1,14 @@
+ ¿Cómo podrían desplegar su API más allá de su computador local?
+     Usando una Paas o un Iaas , como lo son Google Cloud, Microsoft Azure,Amazon Web Services , o
+     servicios como Heroku
+
+
+¿Observan algunas limitaciones al momento de crear una API web basada en MySQL?
+    Es tediosa la tranformacion de un tabla a un objeto JSON , asi como tambien la estructura basada en tablas
+    aveces no es la mejor forma de guardar cierto tipo de informacion
+
+¿Qué es el movimiento de Open Data? ¿En qué sentido podría aportar a la ciudad de Valdivia?
+
+    Es un movimiento que promueve el compartir la informacion , para poder ser usada en todo los formas posible
+    sin ninguna restriccion , podria aportar a valdivia ya que nos permitiria manejar grandes cantidades de dato
+    que reflejen de la mejor forma como la ciudad maneja sus recursos y acentuaria sus problemas principales

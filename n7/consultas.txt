@@ -23,3 +23,9 @@
 9) db.movieDetails.find({genres:{$in:["Thriller"]},"tomato.rating":{$gte:6}})
 
 10)db.movieDetails.distinct("genres")
+
+11) db.movieDetails.find({plot:{$regex:/Star/}})
+
+12) db.movieDetails.find({title:{$regex:/^T/}})
+
+13) db.movieDetails.find({genres:{$nin:["Drama","Thriller"]}})

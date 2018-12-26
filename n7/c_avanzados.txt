@@ -1,0 +1,102 @@
+1) ¿Qué es un indice y de que sirve?
+
+un indice es un puntero a una fila  de una determinada
+tabla de nuestra base de datos
+
+2)¿Cuando los SGBD utilizan indices?
+
+mejoran el tiempo de reaccion
+frente a consultas pero lo retrasa a nivel de insercion
+modificacion y eliminacion,para mejorar operacion join,
+funciones de agregacion como groupby  o order by y mejorar la
+clausura where en caso de sql
+
+3)Cuales son los tipos de indeces en mysql y mongodb
+    mysql:
+        INDEX(NON-unique)
+        UNIQUE()
+        PRIMARY
+        FULLTEXT -> solo en innoDB y MyISAM
+        SPATIAL  -> solo en innoDB y MyISAM
+
+
+** ej : >> CREATE UNIQUE INDEX mi_indice_unico ON mi_tabla (mi_columna) USING HASH;
+BTREE
+4) Si los indíces son utiles, ¿por qué no crear indíces por cada columna/atributo? ¿Cuáles son los límimtes?
+sus dos principales efectos no deseados son la disminucion del tiempo de ejecucion de acciones no-consulta(select) y tambien
+la necesidad de espacio extra en almacenamiento para guardarlos
+
+5)cual es el promedio del SGBD para responder  a esta consulta?
+
+    > set profiling=1;
+    //run query
+    show profiles;
+
+
+    el promedio es de 0.026 segundos
+
+6)
+    CREATE INDEX mi_indice ON rental(return_date) USING BTREE;
+
+    el nuevo promedio es 0.016
+7) mongodb utiliza arboles balanceados y para potenciar su funcionamiento
+    es bueno tener una alta cardinalidad en los datos
+
+    indices simples o de un solo campo
+        solo se aplica a un campo de la coleccion (un columna de la tabla)
+            db.coleccion.ensureIndex({"campo":1})
+            ** el uno indica que el indice se ordena de forma ascendente
+                -1 si fuera desendente
+
+    indices multiples o de un solo campo
+            db.coleccion.ensureIndex({"campo1":1,"campo2":-1})
+
+            se puede consultar uno o varios campos
+
+    tambien existen indeces unicos
+        db.coleccion.ensureIndex( { "campo1" : 1 }, {"unique":true} )
+
+    Para crear índices que solo incluyan los documentos cuyo campo indexado existe,
+     se utiliza la opción sparse.
+
+    db.coleccion.ensureIndex( { "campo" : 1 }, {"sparse":true} )
+
+    para documentos enbebidos se utilizaria
+    db.coleccion.ensureIndex( { "doc.c" : 1 } )
+
+
+
+parte 2 transacciones
+1) ¿Qué es una transacción?
+
+    Las transacciones sirven para asegurar la consistencia de la información, asegurando
+     que un conjunto de sentencias se ejecuten correctamente, o no se ejecuten.
+2) ¿En términos de transacción, cuáles son las características que deberian garantizar un buen SGBD?
+
+    dar soporte a las características ACID
+        atomicidad varias operaciones son una
+        consistencia no se deben crear datos inconsistentes
+        aislamiento no dejar que la aplicacion use datos que no esta "commiteada"
+        durabilidad  una vez terminada la transacción los cambios deben ser permanentes
+
+**nota MyISAM es mas rapido de que innoDB pero no soporta transacciones
+
+5) Supongamos que queremos hacerlo mismo en Mongo. ¿Mongo soporta transacciones ACID?
+¿Desde cuándo? ¿Cómo se puede hacer transacciones? ¿Con qué limitaciones?
+
+    si las soporta desde mongodb 4.0
+
+    Session.startTransaction()
+    Session.commitTransaction()
+    Session.abortTransaction()
+
+
+
+Sharding y Replicación
+    1) ¿Cuál es el principio del Sharding?
+        es basicamente tomar una base de datos y repartirla en varias
+        sub-basesdedatos en servidores diferentes
+
+    2) ¿Cuál es el principio de la Replicación?
+
+    3) ¿MySQL implementa mecanismos de Sharding/Replicación? y Mongo?
